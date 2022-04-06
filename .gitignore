@@ -1,6 +1,5 @@
 .idea
 target/
-*/test/
 
 .idea/
 *.iml
