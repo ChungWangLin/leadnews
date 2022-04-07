@@ -38,5 +38,12 @@
         limit #{offset},#{size}
     </select>
 
+    <insert id="insertChannel">
+        insert into
+            ad_channel(name, description, is_default, status, ord, created_time)
+        values
+            (#{name}, #{description}, #{isDefault}, #{status}, #{ord}, #{createdTime})
+    </insert>
+
 
 </mapper>

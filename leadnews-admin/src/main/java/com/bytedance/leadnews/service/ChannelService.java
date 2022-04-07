@@ -2,10 +2,12 @@ package com.bytedance.leadnews.service;
 
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
+import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
 import com.bytedance.leadnews.dao.ChannelDao;
 import com.bytedance.leadnews.pojo.bo.QueryCondition;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -30,4 +32,13 @@ public class ChannelService {
         return pageInfo.init(page, size, count, lis);
     }
 
+    /**
+     * 新增频道
+     */
+    public void createChannel(ChannelParam.Create param) {
+        AdChannel channel = new AdChannel().convertFromParam(param);
+        LocalDateTime now = LocalDateTime.now();
+        channel.setCreatedTime(now);
+        channelDao.insertChannel(channel);
+    }
 }

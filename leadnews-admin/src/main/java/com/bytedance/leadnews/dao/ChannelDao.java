@@ -18,4 +18,10 @@ public interface ChannelDao {
      * @param condition 条件
      */
     List<AdChannel> findByPage(@Param("offset") Long offset, @Param("size") Integer size, @Param("condition") QueryCondition condition);
+
+    /**
+     * 新增频道
+     * @param channel 频道
+     */
+    void insertChannel(AdChannel channel);
 }
