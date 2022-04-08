@@ -4,13 +4,15 @@ import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 频道
  */
 @Data
-public class AdChannel {
+public class AdChannel implements Serializable {
+    private static final long serialVersionUID = 57887078897108313L;
     private Integer id;
     private String name;
     private String description;

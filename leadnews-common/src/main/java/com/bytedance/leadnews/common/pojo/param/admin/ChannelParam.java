@@ -9,17 +9,19 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * 频道管理相关入参
  */
-public class ChannelParam {
+public class ChannelParam implements Serializable {
 
     @Data
     /**
      * 创建频道参数
      */
-    public static class Create{
+    public static class Create implements Serializable{
+        private static final long serialVersionUID = 2025087070788020284L;
         @NotBlank(message = "频道名不能为空")
         @Length(min = 1,max = 10,message = "名称长度(1-10)")
         private String name;
@@ -39,7 +41,8 @@ public class ChannelParam {
 
     @Getter
     @Setter
-    public static class Update{
+    public static class Update implements Serializable{
+        private static final long serialVersionUID = 2054713634196019869L;
         @NotNull(message = "id不能为空")
         private Integer id;
 
