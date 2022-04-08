@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: SZ
+        namespace: dev-1
+    gateway:
+      routes:
+        - id: to-admin
+          uri: lb://admin-service
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix= 1
