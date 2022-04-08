@@ -1,4 +1,4 @@
-package com.bytedance.leadnews.api.channel;
+package com.bytedance.leadnews.api.admin;
 
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
