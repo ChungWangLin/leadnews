@@ -19,7 +19,12 @@ public class AdChannel {
     private Byte ord;
     private LocalDateTime createdTime;
 
-    public AdChannel convertFromParam(ChannelParam.Create param) {
+    public AdChannel convertFromCreateParam(ChannelParam.Create param) {
+        BeanUtils.copyProperties(param,this);
+        return this;
+    }
+
+    public AdChannel coverFromParam(ChannelParam.Update param) {
         BeanUtils.copyProperties(param,this);
         return this;
     }

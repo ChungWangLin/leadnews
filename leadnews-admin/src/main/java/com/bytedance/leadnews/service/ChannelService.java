@@ -36,9 +36,24 @@ public class ChannelService {
      * 新增频道
      */
     public void createChannel(ChannelParam.Create param) {
-        AdChannel channel = new AdChannel().convertFromParam(param);
+        AdChannel channel = new AdChannel().convertFromCreateParam(param);
         LocalDateTime now = LocalDateTime.now();
         channel.setCreatedTime(now);
         channelDao.insertChannel(channel);
+    }
+
+    /**
+     * 更新频道信息
+     */
+    public void updateChannel(ChannelParam.Update param) {
+        AdChannel channel = new AdChannel().coverFromParam(param);
+        channelDao.updateChannel(channel);
+    }
+
+    /**
+     * 删除频道
+     */
+    public void deleteChannelById(Integer id) {
+        channelDao.deleteById(id);
     }
 }

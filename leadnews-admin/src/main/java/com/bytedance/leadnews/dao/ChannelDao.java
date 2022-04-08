@@ -24,4 +24,14 @@ public interface ChannelDao {
      * @param channel 频道
      */
     void insertChannel(AdChannel channel);
+
+    /**
+     * 更新频道
+     */
+    void updateChannel(AdChannel channel);
+
+    /**
+     * 删除频道
+     */
+    void deleteById(Integer id);
 }

@@ -24,7 +24,7 @@ public class ChannelController implements ChannelApi {
                                                   @RequestParam("size") Integer size,
                                                   @RequestParam(required = false) String name,
                                                   @RequestParam(required = false) Byte status) {
-        if (page<1 || size<1) {
+        if (page==null || page<1 || size==null || size<1) {
             throw new ParamRequestException("不合法参数");
         }
         QueryCondition query = new QueryCondition(name,status);
@@ -36,4 +36,17 @@ public class ChannelController implements ChannelApi {
     public void createChannel(@RequestBody @Validated ChannelParam.Create param) {
         channelService.createChannel(param);
     }
+
+    @Override
+    @PutMapping("/channels")
+    public void updateChannel(@RequestBody @Validated ChannelParam.Update param) {
+        channelService.updateChannel(param);
+    }
+
+    @Override
+    @DeleteMapping("/channels/{id}")
+    public void deleteChannelById(@PathVariable("id") Integer id) {
+        channelService.deleteChannelById(id);
+    }
+
 }

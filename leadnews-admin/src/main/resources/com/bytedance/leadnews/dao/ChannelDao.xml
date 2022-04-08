@@ -44,6 +44,34 @@
         values
             (#{name}, #{description}, #{isDefault}, #{status}, #{ord}, #{createdTime})
     </insert>
+    
+    <update id="updateChannel">
+        update ad_channel
+        <trim suffixOverrides=",">
+            <set>
+                <if test="name!=null and name!=''">
+                    name=#{name},
+                </if>
+                <if test="description!=null">
+                    description=#{description},
+                </if>
+                <if test="isDefault!=null">
+                    is_default=#{isDefault},
+                </if>
+                <if test="status!=null">
+                    status=#{status},
+                </if>
+                <if test="ord!=null">
+                    ord=#{ord}
+                </if>
+            </set>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from ad_channel where id = #{id}
+    </delete>
 
 
 </mapper>
