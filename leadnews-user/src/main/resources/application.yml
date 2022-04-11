@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: SZ
+        namespace: dev-1
+  datasource:
+    username: root
+    password: 123456
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/leadnews_user?characterEncoding=UTF8&&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+logging:
+  level:
+    root: info
+    com.bytedance.leadnews: debug
