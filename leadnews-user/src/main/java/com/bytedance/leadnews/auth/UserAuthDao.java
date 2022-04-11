@@ -17,4 +17,9 @@ public interface UserAuthDao {
      * 按条件获取总数
      */
     Long count(@Param("query") UserAuthQuery query);
+
+    /**
+     * 批量通过用户审核
+     */
+    void batchUpdateStatus(@Param("ids") List<Integer> ids, @Param("status") Integer status, @Param("reason") String reason);
 }

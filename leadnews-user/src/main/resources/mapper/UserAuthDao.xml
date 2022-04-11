@@ -56,4 +56,17 @@
             </if>
         </where>
     </select>
+
+    <update id="batchUpdateStatus">
+        update
+            ap_user_realname
+        set
+            status = #{status}, reason=#{reason}
+        where
+            id
+        in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

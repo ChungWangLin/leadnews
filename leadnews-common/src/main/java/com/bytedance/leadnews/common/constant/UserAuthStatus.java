@@ -3,11 +3,25 @@ package com.bytedance.leadnews.common.constant;
 /**
  * 用户实名认证状态
  */
-public final class UserAuthStatus {
-    private UserAuthStatus(){}
+public enum UserAuthStatus {
+    CREATE(0, "创建中"),
+    WAIT(1,"等待审核"),
+    FAILED(2,"审核失败"),
+    PASS(9,"审核通过");
 
-    public static final Byte CREATE = 0;
-    public static final Byte WAIT = 1;
-    public static final Byte FAILED = 2;
-    public static final Byte PASS = 9;
+    final Integer code;
+    final String status;
+
+    UserAuthStatus(Integer code, String status){
+        this.code = code;
+        this.status = status;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }
