@@ -27,9 +27,7 @@ public class SensitiveController implements SensitiveApi {
     @GetMapping("/sensitive")
     public PageInfo<AdSensitive> getSensitiveByPage(@RequestParam Integer page, @RequestParam Integer size,
                                                     @RequestParam(required = false) String keyword) {
-        if (page==null || page<1 || size==null || size<1) {
-            throw new ParamRequestException("不合法参数");
-        }
+        PageInfo.checkedPage(page,size);
         return sensitiveService.findByPage(page, size, keyword);
     }
 

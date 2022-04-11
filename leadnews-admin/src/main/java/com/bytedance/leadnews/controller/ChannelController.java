@@ -30,9 +30,7 @@ public class ChannelController implements ChannelApi {
                                                   @RequestParam("size") Integer size,
                                                   @RequestParam(required = false) String name,
                                                   @RequestParam(required = false) Byte status) {
-        if (page==null || page<1 || size==null || size<1) {
-            throw new ParamRequestException("不合法参数");
-        }
+        PageInfo.checkedPage(page,size);
         ChannelQuery query = new ChannelQuery(name,status);
         return channelService.findByPage(page,size,query);
     }

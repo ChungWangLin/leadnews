@@ -27,8 +27,8 @@ public class ChannelService {
      */
     public PageInfo<AdChannel> findByPage(Integer page, Integer size, ChannelQuery condition) {
         Long count = channelDao.findCountByCondition(condition);
-        long offset = (long) (page - 1) *size;
-        List<AdChannel> lis = channelDao.findByPage(offset,size,condition);
+        long start = PageInfo.limit(page,size);
+        List<AdChannel> lis = channelDao.findByPage(start,size,condition);
         PageInfo<AdChannel> pageInfo = new PageInfo<>();
         return pageInfo.init(page, size, count, lis);
     }

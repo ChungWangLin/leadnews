@@ -24,9 +24,9 @@ public class SensitiveService {
      * 按条件分页查询
      */
     public PageInfo<AdSensitive> findByPage(Integer page, Integer size, String keyword) {
-        long offset = (long) (page - 1) *size;
+        long start = PageInfo.limit(page,size);
         SensitiveQuery query = new SensitiveQuery(keyword);
-        List<AdSensitive> list = sensitiveDao.findByCondition(offset, size, query);
+        List<AdSensitive> list = sensitiveDao.findByCondition(start, size, query);
         Long count = sensitiveDao.count(query);
         PageInfo<AdSensitive> pageInfo = new PageInfo<>();
         return pageInfo.init(page,size,count,list);
