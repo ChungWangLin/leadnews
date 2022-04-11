@@ -61,7 +61,7 @@
         update
             ap_user_realname
         set
-            status = #{status}, reason=#{reason}
+            status = #{status}, reason=#{reason},updated_time=#{now}
         where
             id
         in

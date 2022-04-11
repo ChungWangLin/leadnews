@@ -1,6 +1,7 @@
 package com.bytedance.leadnews.auth;
 
 import com.bytedance.leadnews.bo.UserAuthQuery;
+import com.bytedance.leadnews.bo.UserStatus;
 import com.bytedance.leadnews.common.pojo.entity.ApUserRealName;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,5 +22,5 @@ public interface UserAuthDao {
     /**
      * 批量通过用户审核
      */
-    void batchUpdateStatus(@Param("ids") List<Integer> ids, @Param("status") Integer status, @Param("reason") String reason);
+    void batchUpdateStatus(UserStatus userStatus);
 }

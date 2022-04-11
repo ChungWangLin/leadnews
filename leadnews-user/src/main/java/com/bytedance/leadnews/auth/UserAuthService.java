@@ -1,6 +1,7 @@
 package com.bytedance.leadnews.auth;
 
 import com.bytedance.leadnews.bo.UserAuthQuery;
+import com.bytedance.leadnews.bo.UserStatus;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.ApUserRealName;
 import com.bytedance.leadnews.common.pojo.param.user.UserParam;
@@ -30,6 +31,7 @@ public class UserAuthService {
      * 批量通过用户审核
      */
     public void batchUpdateStatus(UserParam.Status status) {
-        userAuthDao.batchUpdateStatus(status.getIds(),status.getStatus(),status.getReason());
+        UserStatus userStatus = new UserStatus().convertFromStatusParam(status);
+        userAuthDao.batchUpdateStatus(userStatus);
     }
 }
