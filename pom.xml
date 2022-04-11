@@ -26,6 +26,8 @@
         <module>leadnews-gateway</module>
         <module>leadnews-api</module>
         <module>leadnews-user</module>
+        <module>leadnews-article</module>
+        <module>leadnews-wemedia</module>
     </modules>
 
     <dependencyManagement>

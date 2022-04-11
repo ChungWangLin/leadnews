@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bytedance.leadnews.wmuser.WmUserDao">
+    <resultMap id="baseResultMap" type="com.bytedance.leadnews.common.pojo.entity.WmUser">
+        <id property="id" column="id"/>
+        <result property="apUserId" column="ap_user_id"/>
+        <result property="apAuthorId" column="ap_author_id" />
+        <result property="name" column="name" />
+        <result property="password" column="password" />
+        <result property="salt" column="salt" />
+        <result property="nickname" column="nickname" />
+        <result property="image" column="image" />
+        <result property="location" column="location" />
+        <result property="phone" column="phone" />
+        <result property="status" column="status" />
+        <result property="email" column="email" />
+        <result property="type" column="type" />
+        <result property="score" column="score" />
+        <result property="loginTime" column="login_time" />
+        <result property="createdTime" column="created_time" />
+    </resultMap>
+
+    <insert id="batchInsert">
+        insert into
+            wm_user(ap_user_id, name, password, salt, image, phone, status,created_time)
+        values
+        <foreach collection="WMUsers" separator="," item="i">
+            (#{i.apUserId}, #{i.name}, #{i.password}, #{i.salt}, #{i.image}, #{i.phone}, #{i.status}, #{i.createdTime})
+        </foreach>
+    </insert>
+</mapper>

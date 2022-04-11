@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>leadnews-api</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>leadnews-admin-api</module>
-        <module>leadnews-user-api</module>
-        <module>leadnews-article-api</module>
-        <module>leadnews-wemedia-api</module>
-    </modules>
+    <artifactId>leadnews-wemedia</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -26,13 +19,28 @@
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>leadnews-common</artifactId>
+            <artifactId>leadnews-wemedia-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
