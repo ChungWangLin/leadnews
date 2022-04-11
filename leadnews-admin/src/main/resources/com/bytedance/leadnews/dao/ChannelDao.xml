@@ -49,6 +49,7 @@
         update ad_channel
         <trim suffixOverrides=",">
             <set>
+                id=#{id},
                 <if test="name!=null and name!=''">
                     name=#{name},
                 </if>
