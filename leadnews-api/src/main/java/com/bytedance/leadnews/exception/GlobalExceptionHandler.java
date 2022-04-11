@@ -37,14 +37,22 @@ public class GlobalExceptionHandler {
 
     /**
      * 自定义参数校验异常处理
-     * @param e
-     * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ParamRequestException.class)
     public FailedBody paramRequestExceptionHandler(ParamRequestException e) {
         String requestURI = RequestContextUtil.getRequest().getRequestURI();
         return FailedBody.failed(HttpStatus.BAD_REQUEST.value(), e.getMessage(),requestURI);
+    }
+
+    /**
+     * 资源已存在异常处理
+     */
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictException.class)
+    public FailedBody conflictExceptionHandler(ConflictException e) {
+        String requestURI = RequestContextUtil.getRequest().getRequestURI();
+        return FailedBody.failed(HttpStatus.CONFLICT.value(), e.getMessage(), requestURI);
     }
 
 }
