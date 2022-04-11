@@ -1,16 +1,22 @@
 package com.bytedance.leadnews.controller;
 
-import com.bytedance.leadnews.api.channel.ChannelApi;
+import com.bytedance.leadnews.api.admin.ChannelApi;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
 import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
 import com.bytedance.leadnews.exception.ParamRequestException;
-import com.bytedance.leadnews.pojo.bo.QueryCondition;
+import com.bytedance.leadnews.pojo.bo.ChannelQuery;
 import com.bytedance.leadnews.service.ChannelService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
+@Slf4j
 public class ChannelController implements ChannelApi {
     private final ChannelService channelService;
 
@@ -27,7 +33,7 @@ public class ChannelController implements ChannelApi {
         if (page==null || page<1 || size==null || size<1) {
             throw new ParamRequestException("不合法参数");
         }
-        QueryCondition query = new QueryCondition(name,status);
+        ChannelQuery query = new ChannelQuery(name,status);
         return channelService.findByPage(page,size,query);
     }
 
@@ -43,10 +49,18 @@ public class ChannelController implements ChannelApi {
         channelService.updateChannel(param);
     }
 
-    @Override
-    @DeleteMapping("/channels/{id}")
-    public void deleteChannelById(@PathVariable("id") Integer id) {
-        channelService.deleteChannelById(id);
-    }
 
+    @Override
+    @DeleteMapping("/channels")
+    public void deleteChannelByIds(@RequestParam("ids") String ids) {
+        String[] idsArray = ids.split(",");
+        List<Integer> channelIds;
+        try {
+            channelIds = Arrays.stream(idsArray).map(Integer::valueOf).collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("错误的ids:{}", ids);
+            throw new ParamRequestException("参数不合法");
+        }
+        channelService.deleteChannelByIds(channelIds);
+    }
 }

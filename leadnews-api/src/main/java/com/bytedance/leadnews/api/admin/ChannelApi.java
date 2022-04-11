@@ -23,6 +23,6 @@ public interface ChannelApi {
     /**
      * 删除频道
      */
-    void deleteChannelById(Integer id);
+    void deleteChannelByIds(String ids);
 
 }

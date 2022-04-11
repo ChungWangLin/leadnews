@@ -69,9 +69,16 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteById">
-        delete from ad_channel where id = #{id}
+    <delete id="deleteByIds">
+        delete from ad_channel where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
+
+    <select id="findByName" resultMap="baseResultMap">
+        select * from ad_channel where name = #{name}
+    </select>
 
 
 </mapper>

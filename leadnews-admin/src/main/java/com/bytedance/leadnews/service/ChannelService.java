@@ -4,7 +4,9 @@ import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
 import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
 import com.bytedance.leadnews.dao.ChannelDao;
-import com.bytedance.leadnews.pojo.bo.QueryCondition;
+import com.bytedance.leadnews.exception.ConflictException;
+import com.bytedance.leadnews.exception.ParamRequestException;
+import com.bytedance.leadnews.pojo.bo.ChannelQuery;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,7 +26,7 @@ public class ChannelService {
      * @param size 分页大小
      * @param condition 条件
      */
-    public PageInfo<AdChannel> findByPage(Integer page, Integer size, QueryCondition condition) {
+    public PageInfo<AdChannel> findByPage(Integer page, Integer size, ChannelQuery condition) {
         Long count = channelDao.findCountByCondition(condition);
         long offset = (long) (page - 1) *size;
         List<AdChannel> lis = channelDao.findByPage(offset,size,condition);
@@ -36,6 +38,9 @@ public class ChannelService {
      * 新增频道
      */
     public void createChannel(ChannelParam.Create param) {
+        if (isChannelExist(param.getName())) {
+            throw new ConflictException("频道已存在");
+        }
         AdChannel channel = new AdChannel().convertFromCreateParam(param);
         LocalDateTime now = LocalDateTime.now();
         channel.setCreatedTime(now);
@@ -46,14 +51,33 @@ public class ChannelService {
      * 更新频道信息
      */
     public void updateChannel(ChannelParam.Update param) {
-        AdChannel channel = new AdChannel().coverFromParam(param);
+        if (isChannelExist(param.getName())) {
+            throw new ConflictException("频道已存在");
+        }
+        AdChannel channel = new AdChannel().coverFromUpdateParam(param);
         channelDao.updateChannel(channel);
     }
 
     /**
      * 删除频道
      */
-    public void deleteChannelById(Integer id) {
-        channelDao.deleteById(id);
+    public void deleteChannelByIds(List<Integer> channelIds) {
+        channelDao.deleteByIds(channelIds);
     }
+
+    /**
+     * 根据频道名查询频道
+     */
+    public AdChannel findByChannelName(String name) {
+        return channelDao.findByName(name);
+    }
+
+    /**
+     * 判断该频道是否存在
+     * @param name 频道名
+     */
+    public boolean isChannelExist(String name) {
+        return findByChannelName(name)!=null;
+    }
+
 }

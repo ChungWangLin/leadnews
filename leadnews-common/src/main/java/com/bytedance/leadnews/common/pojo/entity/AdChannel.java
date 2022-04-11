@@ -26,7 +26,7 @@ public class AdChannel implements Serializable {
         return this;
     }
 
-    public AdChannel coverFromParam(ChannelParam.Update param) {
+    public AdChannel coverFromUpdateParam(ChannelParam.Update param) {
         BeanUtils.copyProperties(param,this);
         return this;
     }
