@@ -1,10 +1,10 @@
 package com.bytedance.leadnews.service;
 
+import com.bytedance.leadnews.common.exception.ConflictException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdSensitive;
 import com.bytedance.leadnews.common.pojo.param.admin.SensitiveParam;
 import com.bytedance.leadnews.dao.SensitiveDao;
-import com.bytedance.leadnews.exception.ConflictException;
 import com.bytedance.leadnews.pojo.bo.SensitiveQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

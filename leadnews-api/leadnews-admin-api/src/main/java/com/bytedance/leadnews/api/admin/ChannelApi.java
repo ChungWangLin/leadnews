@@ -3,6 +3,7 @@ package com.bytedance.leadnews.api.admin;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
 import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
+import org.springframework.cloud.openfeign.FeignClient;
 
 public interface ChannelApi {
     /**

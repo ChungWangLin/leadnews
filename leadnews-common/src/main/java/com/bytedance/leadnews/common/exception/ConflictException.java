@@ -1,4 +1,4 @@
-package com.bytedance.leadnews.exception;
+package com.bytedance.leadnews.common.exception;
 
 public class ConflictException extends RuntimeException{
     private final String message;

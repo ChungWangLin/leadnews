@@ -1,10 +1,10 @@
 package com.bytedance.leadnews.controller;
 
 import com.bytedance.leadnews.api.admin.ChannelApi;
+import com.bytedance.leadnews.common.exception.ParamRequestException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
 import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
-import com.bytedance.leadnews.exception.ParamRequestException;
 import com.bytedance.leadnews.pojo.bo.ChannelQuery;
 import com.bytedance.leadnews.service.ChannelService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.bytedance.leadnews.exception;
+package com.bytedance.leadnews.common.exception;
 
 import com.bytedance.leadnews.common.pojo.dto.FailedBody;
-import com.bytedance.leadnews.util.RequestContextUtil;
+import com.bytedance.leadnews.common.util.RequestContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j

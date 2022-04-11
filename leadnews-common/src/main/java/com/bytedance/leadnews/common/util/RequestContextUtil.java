@@ -1,4 +1,4 @@
-package com.bytedance.leadnews.util;
+package com.bytedance.leadnews.common.util;
 
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.request.RequestContextHolder;

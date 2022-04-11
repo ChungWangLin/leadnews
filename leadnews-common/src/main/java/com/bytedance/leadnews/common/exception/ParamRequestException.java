@@ -1,4 +1,4 @@
-package com.bytedance.leadnews.exception;
+package com.bytedance.leadnews.common.exception;
 
 public class ParamRequestException extends RuntimeException{
     private  String message;

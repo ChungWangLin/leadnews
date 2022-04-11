@@ -1,10 +1,10 @@
 package com.bytedance.leadnews.controller;
 
 import com.bytedance.leadnews.api.admin.SensitiveApi;
+import com.bytedance.leadnews.common.exception.ParamRequestException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdSensitive;
 import com.bytedance.leadnews.common.pojo.param.admin.SensitiveParam;
-import com.bytedance.leadnews.exception.ParamRequestException;
 import com.bytedance.leadnews.service.SensitiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;

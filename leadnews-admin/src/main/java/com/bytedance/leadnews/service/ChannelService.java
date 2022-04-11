@@ -1,11 +1,10 @@
 package com.bytedance.leadnews.service;
 
+import com.bytedance.leadnews.common.exception.ConflictException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.AdChannel;
 import com.bytedance.leadnews.common.pojo.param.admin.ChannelParam;
 import com.bytedance.leadnews.dao.ChannelDao;
-import com.bytedance.leadnews.exception.ConflictException;
-import com.bytedance.leadnews.exception.ParamRequestException;
 import com.bytedance.leadnews.pojo.bo.ChannelQuery;
 import org.springframework.stereotype.Service;
 
