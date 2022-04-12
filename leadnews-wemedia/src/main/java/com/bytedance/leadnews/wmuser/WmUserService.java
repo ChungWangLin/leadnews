@@ -19,12 +19,13 @@ public class WmUserService {
     /**
      * 批量添加自媒体账户
      */
-    public void batchCreateWmUser(List<WmUserParam.Create> params){
+    public List<WmUser> batchCreateWmUser(List<WmUserParam.Create> params){
         List<WmUser> wmUsers = params.stream().map(e-> {
             WmUser wmUser = new WmUser().convertFromCreateParam(e);
             wmUser.setStatus(WmUserStatus.OK.getCode());
             return wmUser;
         }).collect(Collectors.toList());
         wmUserDao.batchInsert(wmUsers);
+        return wmUsers;
     }
 }

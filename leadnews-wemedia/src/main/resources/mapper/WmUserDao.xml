@@ -22,7 +22,7 @@
         <result property="createdTime" column="created_time" />
     </resultMap>
 
-    <insert id="batchInsert">
+    <insert id="batchInsert" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
         insert into
             wm_user(ap_user_id, name, password, salt, image, phone, status,created_time)
         values
