@@ -25,14 +25,10 @@ public class WmUserParam implements Serializable {
         @NotBlank(message = "参数不合法")
         private String salt;
 
-        @NotBlank(message = "参数不合法")
         private String image;
 
-        @NotBlank(message = "参数不合法")
-        private String phone;
-
         @NotNull(message = "参数不合法")
-        private Integer status;
+        private String phone;
     }
 
     @Data

@@ -69,4 +69,13 @@
             #{id}
         </foreach>
     </update>
+
+    <select id="findUserIdByRealNameId" resultType="java.lang.Integer">
+        select user_id from ap_user_realname where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+
+
 </mapper>

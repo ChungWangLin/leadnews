@@ -23,4 +23,11 @@ public interface UserAuthDao {
      * 批量通过用户审核
      */
     void batchUpdateStatus(UserStatus userStatus);
+
+    /**
+     * 根据 realNameId 获取userId
+     * @param ids 实名认证资料ids
+     * @return userIds
+     */
+    List<Integer> findUserIdByRealNameId(@Param("ids") List<Integer> ids);
 }
