@@ -1,0 +1,18 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: DFS-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: SZ
+        namespace: dev-1
+logging:
+  level:
+    root: info
+    com.bytedance.leadnews: debug

@@ -28,6 +28,7 @@
         <module>leadnews-user</module>
         <module>leadnews-article</module>
         <module>leadnews-wemedia</module>
+        <module>leadnews-dfs</module>
     </modules>
 
     <dependencyManagement>
@@ -59,6 +60,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.2.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.tobato</groupId>
+                <artifactId>fastdfs-client</artifactId>
+                <version>1.27.2</version>
             </dependency>
 
         </dependencies>
