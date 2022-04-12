@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bytedance.leadnews.author.AuthorDao">
+    <resultMap id="baseResultMap" type="com.bytedance.leadnews.common.pojo.entity.ApAuthor">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type" />
+        <result property="userId" column="user_id"/>
+        <result property="createdTime" column="created_time" />
+        <result property="wmUserId" column="wm_user_id" />
+    </resultMap>
+
+    <insert id="save">
+        insert into
+            ap_author(name, type, user_id, created_time, wm_user_id)
+        values
+        <foreach collection="authors"  item="i" separator="," >
+            (#{i.name}, #{i.type}, #{i.userId}, #{i.createdTime}, #{i.wmUserId})
+        </foreach>
+    </insert>
+
+</mapper>
