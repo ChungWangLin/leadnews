@@ -52,4 +52,9 @@ public class GlobalExceptionHandler {
         return FailedBody.failed(HttpStatus.CONFLICT.value(), e.getMessage(), requestURI);
     }
 
+    @ExceptionHandler(CustomerException.class)
+    public FailedBody customerExceptionHandler(CustomerException e) {
+        String requestURI = RequestContextUtil.getRequest().getRequestURI();
+        return FailedBody.failed(5000, e.getMessage(),requestURI);
+    }
 }
