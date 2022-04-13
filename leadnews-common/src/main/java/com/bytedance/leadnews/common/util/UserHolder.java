@@ -14,7 +14,7 @@ public class UserHolder {
     /**
      * 获取登录用户信息
      */
-    public static Integer getUser(){
+    public static Integer getUserId(){
         return userThreadLocal.get();
     }
 
