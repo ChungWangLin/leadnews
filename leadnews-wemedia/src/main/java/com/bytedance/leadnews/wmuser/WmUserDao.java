@@ -10,4 +10,6 @@ public interface WmUserDao {
      * 批量创建自媒体账户
      */
     void batchInsert(@Param("WMUsers") List<WmUser> WMUsers);
+
+    WmUser findByUsername(@Param("name") String name);
 }

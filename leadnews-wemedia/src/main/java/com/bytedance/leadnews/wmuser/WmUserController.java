@@ -3,6 +3,8 @@ package com.bytedance.leadnews.wmuser;
 import com.bytedance.leadnews.api.wemedia.WmUserApi;
 import com.bytedance.leadnews.common.pojo.entity.WmUser;
 import com.bytedance.leadnews.common.pojo.param.wemedia.WmUserParam;
+import com.bytedance.leadnews.pojo.dto.LoginInfo;
+import com.bytedance.leadnews.pojo.param.LoginParam;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +22,13 @@ public class WmUserController implements WmUserApi {
     }
 
     @Override
-    @PostMapping("/vm-users")
+    @PostMapping("/vm/users")
     public List<WmUser> createWmUser(@RequestBody @Validated WmUserParam.UserInfo userInfo) {
-        List<WmUser> wmUsers = wmUserService.batchCreateWmUser(userInfo.getUserInfo());
-        return wmUsers;
+        return wmUserService.batchCreateWmUser(userInfo.getUserInfo());
+    }
+
+    @PostMapping("/vm/user/login")
+    public LoginInfo login(@RequestBody @Validated LoginParam param) {
+        return wmUserService.login(param);
     }
 }

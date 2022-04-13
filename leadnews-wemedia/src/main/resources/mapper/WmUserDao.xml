@@ -30,4 +30,13 @@
             (#{i.apUserId}, #{i.name}, #{i.password}, #{i.salt}, #{i.image}, #{i.phone}, #{i.status}, #{i.createdTime})
         </foreach>
     </insert>
+
+    <select id="findByUsername" resultMap="baseResultMap">
+        select
+            id, ap_user_id, name, password, nickname, image, phone
+        from
+            wm_user
+        where
+            name = #{name}
+    </select>
 </mapper>
