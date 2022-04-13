@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bytedance.leadnews.material.MaterialDao">
+    <resultMap id="baseResultMap" type="com.bytedance.leadnews.common.pojo.entity.WmMaterial">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="url" column="url" />
+        <result property="type" column="type" />
+        <result property="collection" column="is_collection" />
+        <result property="createdTime" column="created_time" />
+    </resultMap>
+
+    <insert id="save">
+        insert into
+            wm_material(user_id, url, type, is_collection, created_time)
+        values
+        <foreach collection="list"  item="i" separator=",">
+            (#{i.userId}, #{i.url}, #{i.type}, #{i.collection}, #{i.createdTime})
+        </foreach>
+    </insert>
+
+    <select id="findByPage" resultMap="baseResultMap">
+        select * from wm_material
+        <trim>
+            <where>
+                <if test="condition.collection!=null and condition.collection!=''">
+                    and is_collection=#{condition.collection}
+                </if>
+                <if test="condition.userId!=null">
+                    and user_id = #{condition.userId}
+                </if>
+            </where>
+        </trim>
+    </select>
+
+    <select id="count" resultType="long">
+        select count(*) from wm_material
+        <trim>
+            <where>
+                <if test="condition.collection!=null and condition.collection!=''">
+                    and is_collection=#{condition.collection}
+                </if>
+                <if test="condition.userId!=null">
+                    and user_id = #{condition.userId}
+                </if>
+            </where>
+        </trim>
+    </select>
+
+    <delete id="deleteByIds">
+        delete from wm_material
+            where user_id=#{userId}
+        and
+            id
+        in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateCollection">
+        update wm_material set is_collection=#{param.collection} where id = #{param.id} and user_id = #{param.userId}
+    </update>
+</mapper>
