@@ -1,5 +1,6 @@
 package com.bytedance.leadnews.pojo.param;
 
+import com.bytedance.leadnews.pojo.bo.ContentNode;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -14,7 +15,7 @@ public class NewsParam {
         String title;
 
         @NotNull(message = "参数不合法")
-        List<Content> content;
+        List<ContentNode> content;
 
         @NotNull(message = "参数不合法")
         Integer type;
@@ -27,12 +28,6 @@ public class NewsParam {
 
         @NotNull(message = "参数不合法")
         List<String> images;
-    }
-
-    @Data
-    public static class Content{
-        private String type;
-        private String value;
     }
 
 

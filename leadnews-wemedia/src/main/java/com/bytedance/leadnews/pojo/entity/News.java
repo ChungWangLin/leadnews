@@ -1,13 +1,13 @@
 package com.bytedance.leadnews.pojo.entity;
 
 import com.bytedance.leadnews.common.exception.CustomerException;
+import com.bytedance.leadnews.pojo.bo.ContentNode;
 import com.bytedance.leadnews.pojo.param.NewsParam;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +16,7 @@ import java.util.Map;
 
 @Data
 @Slf4j
-public class News implements Serializable {
-    private static final long serialVersionUID = -6080482560792137881L;
+public class News {
     private Integer id;
     private Integer userId;
     private String title;
@@ -75,7 +74,7 @@ public class News implements Serializable {
         return news;
     }
 
-    private String getNewContent(List<NewsParam.Content> content) {
+    private String getNewContent(List<ContentNode> content) {
         String str;
         if (CollectionUtils.isEmpty(content)) {
             str = null;
@@ -95,10 +94,10 @@ public class News implements Serializable {
      * @param contents 文章内容
      * @return 封面图片列表
      */
-    private Map<String,Object> getImages(List<NewsParam.Content> contents) {
+    private Map<String,Object> getImages(List<ContentNode> contents) {
         Map<String,Object> map = new HashMap<>();
         List<String> images = new ArrayList<>();
-        for (NewsParam.Content content : contents) {
+        for (ContentNode content : contents) {
             if (content.getType().equals("image")) {
                 images.add(content.getValue());
             }
