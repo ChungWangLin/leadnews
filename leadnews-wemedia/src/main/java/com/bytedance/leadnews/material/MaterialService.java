@@ -5,7 +5,7 @@ import com.bytedance.leadnews.common.exception.CustomerException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.WmMaterial;
 import com.bytedance.leadnews.common.util.UserHolder;
-import com.bytedance.leadnews.pojo.bo.QueryCondition;
+import com.bytedance.leadnews.pojo.bo.MaterialCondition;
 import com.bytedance.leadnews.pojo.param.MaterialParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +54,7 @@ public class MaterialService {
         throw new CustomerException("不支持的类型");
     }
 
-    public PageInfo<WmMaterial> findByPage(Integer page, Integer size, QueryCondition condition) {
+    public PageInfo<WmMaterial> findByPage(Integer page, Integer size, MaterialCondition condition) {
         Long starter = PageInfo.limit(page, size);
         Integer userId = UserHolder.getUserId();
         condition.setUserId(userId);

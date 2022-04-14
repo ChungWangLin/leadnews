@@ -3,7 +3,7 @@ package com.bytedance.leadnews.material;
 import com.bytedance.leadnews.common.exception.ParamRequestException;
 import com.bytedance.leadnews.common.pojo.dto.PageInfo;
 import com.bytedance.leadnews.common.pojo.entity.WmMaterial;
-import com.bytedance.leadnews.pojo.bo.QueryCondition;
+import com.bytedance.leadnews.pojo.bo.MaterialCondition;
 import com.bytedance.leadnews.pojo.param.MaterialParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class MaterialController {
     public PageInfo<WmMaterial> findByPage(@RequestParam Integer page, @RequestParam Integer size,
                                            @RequestParam(required = false)Integer collection) {
         PageInfo.checkedPage(page,size);
-        QueryCondition queryCondition = new QueryCondition();
+        MaterialCondition queryCondition = new MaterialCondition();
         queryCondition.setCollection(collection);
         return materialService.findByPage(page,size,queryCondition);
     }
