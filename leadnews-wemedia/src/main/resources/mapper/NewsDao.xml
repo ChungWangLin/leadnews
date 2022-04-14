@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bytedance.leadnews.news.NewsDao">
+    <resultMap id="baseResultMap" type="com.bytedance.leadnews.pojo.entity.News">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="type" column="type" />
+        <result property="channelId" column="channelId" />
+        <result property="labels" column="labels" />
+        <result property="createdTime" column="created_time" />
+        <result property="submittedTime" column="submited_time" />
+        <result property="status" column="status" />
+        <result property="publishTime" column="publish_time" />
+        <result property="reason" column="reason" />
+        <result property="articleId" column="article_id" />
+        <result property="images" column="images" />
+        <result property="enable" column="enable" />
+    </resultMap>
+
+    <select id="findByPage" resultMap="baseResultMap">
+        select
+            id,user_id, title, type, channel_id, labels, created_time, submited_time, status,
+            publish_time,reason,article_id,images,enable
+        from
+            wm_news
+        <where>
+            <if test="condition.status!=null">
+                status=#{condition.status}
+            </if>
+            <if test="condition.titleKeyword!=null and condition.titleKeyword!=''">
+               and title like concat("%",#{condition.titleKeyword},"%")
+            </if>
+            <if test="condition.channelId!=null">
+                and channel_id = #{condition.channelId}
+            </if>
+            <if test="condition.publishStartTime!=null and condition.publishEndTime!=null">
+                and publish_time between #{condition.publishStartTime} and #{condition.publishEndTime}
+            </if>
+            <if test="condition.userId!=null">
+                and user_id = #{condition.userId}
+            </if>
+        </where>
+        limit #{starter},#{size}
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from wm_news
+        <where>
+            <if test="condition.status!=null">
+                status=#{condition.status}
+            </if>
+            <if test="condition.titleKeyword!=null and condition.titleKeyword!=''">
+                and title like concat("%",#{condition.titleKeyword},"%")
+            </if>
+            <if test="condition.channelId!=null">
+                and channel_id = #{condition.channelId}
+            </if>
+            <if test="condition.publishStartTime!=null and condition.publishEndTime!=null">
+                and publish_time between #{condition.publishStartTime} and #{condition.publishEndTime}
+            </if>
+            <if test="condition.userId!=null">
+                and user_id = #{condition.userId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into
+            wm_news (user_id, title, content, type, channel_id, labels, created_time, status, images, enable)
+        values
+            (#{userId}, #{title}, #{content}, #{type}, #{channelId}, #{labels}, #{createdTime}, #{status}, #{images}, #{enable})
+    </insert>
+
+    <update id="updateDraft">
+        update
+            wm_news
+        set
+            title=#{title}, content=#{content}, type=#{type}, channel_id=#{channelId},
+            labels=#{labels}, images=#{images}
+        where
+            id=#{id}
+    </update>
+</mapper>
