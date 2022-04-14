@@ -84,4 +84,21 @@
         where
             id=#{id}
     </update>
+
+    <select id="findNewsById" resultMap="baseResultMap">
+        select
+            id, title, content, type, channel_id, labels, status, images, enable
+        from
+            wm_news
+        where
+            id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete from wm_news where id=#{id} and user_id = #{userId}
+    </delete>
+
+    <update id="updateEnabled">
+        update wm_news set enable = #{enabled} where id=#{id} and user_id = #{userId}
+    </update>
 </mapper>

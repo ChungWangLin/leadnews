@@ -15,4 +15,10 @@ public interface NewsDao {
     void save(News draft);
 
     void updateDraft(News draft);
+
+    News findNewsById(@Param("id") Integer id);
+
+    void delete(@Param("id") Integer id, @Param("userId") Integer userId);
+
+    void updateEnabled(@Param("id") Integer id, @Param("userId") Integer userId, @Param("enabled") Integer enabled);
 }
